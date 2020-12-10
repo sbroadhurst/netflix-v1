@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react'
 import axios from '../axios'
 import './Row.css'
 import YouTube from 'react-youtube'
-// import movieTrailer from 'movie-trailer'
 import requests from '../requests'
+import { useWindowSize } from '../windowSize'
+import Carousel from '@brainhubeu/react-carousel'
+import '@brainhubeu/react-carousel/lib/style.css'
 
 const baseUrl = 'https://image.tmdb.org/t/p/original/'
 
 function Row({ title, fetchUrl, isLargeRow, type }) {
   const [movies, setMovies] = useState([])
   const [trailerUrl, setTrailerUrl] = useState('')
-  // const [lastClicked, setLastClicked] = useState('')
+  const [slidesPerPage, setSlidesPerPage] = useState(6)
+  const size = useWindowSize()
 
   useEffect(() => {
     async function fetchData() {
@@ -18,8 +21,21 @@ function Row({ title, fetchUrl, isLargeRow, type }) {
       setMovies(request.data.results)
     }
 
+    function setSlides() {
+      // divides the size of the screen by the width of the poster element with padding
+      // need to get the elements size instead of hard coding the current sizes
+      if (isLargeRow) {
+        const slides = size.width / 173
+        setSlidesPerPage(slides)
+      } else {
+        const slides = size.width / 126
+        setSlidesPerPage(slides)
+      }
+    }
+
     fetchData()
-  }, [fetchUrl])
+    setSlides()
+  }, [fetchUrl, size, isLargeRow])
 
   const handleClick = async (media) => {
     if (type === 'all') {
@@ -34,14 +50,6 @@ function Row({ title, fetchUrl, isLargeRow, type }) {
       const trailer = await axios.get(requests.movieTrailerRequests(media.id))
       setTrailer(trailer)
     }
-
-    // movieTrailer(movie.movie || '')
-    //   .then((url) => {
-    //     const urlParams = new URLSearchParams(new URL(url).search)
-    //     setTrailerUrl(urlParams.get('v'))
-    //     setLastClicked(movie.movie)
-    //   })
-    //   .catch((error) => console.log(error))
   }
 
   const setTrailer = (trailer) => {
@@ -63,18 +71,23 @@ function Row({ title, fetchUrl, isLargeRow, type }) {
       <h2>{title}</h2>
 
       <div className="row-posters">
-        {movies.map((movie, index) => {
-          return (
-            <div key={index}>
-              <img
-                onClick={() => handleClick(movie)}
-                className={`row-poster ${isLargeRow && 'row-posterLarge'}`}
-                src={`${baseUrl}${movie.poster_path}`}
-                alt={movie.name ? movie.name : movie.title}
-              />
-            </div>
-          )
-        })}
+        <Carousel
+          // arrows={true}
+          infinite={true}
+          slidesPerPage={slidesPerPage}>
+          {movies.map((movie, index) => {
+            return (
+              <div key={index}>
+                <img
+                  onClick={() => handleClick(movie)}
+                  className={`row-poster ${isLargeRow && 'row-posterLarge'}`}
+                  src={`${baseUrl}${movie.poster_path}`}
+                  alt={movie.name ? movie.name : movie.title}
+                />
+              </div>
+            )
+          })}
+        </Carousel>
       </div>
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
     </div>
