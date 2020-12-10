@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.19.26",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.3.0",
     "axios": "^0.21.0",
     "movie-trailer": "^2.0.6",
-    "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
     "react-youtube": "^7.13.0",
-    "swiper": "^6.3.5",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

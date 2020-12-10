@@ -9,13 +9,13 @@ function App() {
     <div className="App">
       <Nav />
       <Banner />
-      <Row title="NETFLIX ORIGINALS" fetchUrl={requests.fetchNetflixOriginals} isLargeRow />
-      <Row title="TRENDING NOW" fetchUrl={requests.fetchTrending} />
-      <Row title="TOP RATED" fetchUrl={requests.fetchTopRated} />
-      <Row title="ACTION MOVIES" fetchUrl={requests.fetchActionMovies} />
-      <Row title="COMEDY MOVIES" fetchUrl={requests.fetchComedyMovies} />
-      <Row title="HORROR MOVIES" fetchUrl={requests.fetchHorrorMovies} />
-      <Row title="DOCUMENTARIES" fetchUrl={requests.fetchDocumentaries} />
+      <Row title="NETFLIX ORIGINALS" type="tv" fetchUrl={requests.dataRequests.fetchNetflixOriginals} isLargeRow />
+      <Row title="TRENDING NOW" type="all" fetchUrl={requests.dataRequests.fetchTrending} />
+      <Row title="TOP RATED" type="movie" fetchUrl={requests.dataRequests.fetchTopRated} />
+      <Row title="ACTION MOVIES" type="movie" fetchUrl={requests.dataRequests.fetchActionMovies} />
+      <Row title="COMEDY MOVIES" type="movie" fetchUrl={requests.dataRequests.fetchComedyMovies} />
+      <Row title="HORROR MOVIES" type="movie" fetchUrl={requests.dataRequests.fetchHorrorMovies} />
+      <Row title="DOCUMENTARIES" type="movie" fetchUrl={requests.dataRequests.fetchDocumentaries} />
     </div>
   )
 }
