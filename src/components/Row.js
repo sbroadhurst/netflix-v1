@@ -25,10 +25,10 @@ function Row({ title, fetchUrl, isLargeRow, type }) {
       // divides the size of the screen by the width of the poster element with padding
       // need to get the elements size instead of hard coding the current sizes
       if (isLargeRow) {
-        const slides = size.width / 173
+        const slides = size.width / 243
         setSlidesPerPage(slides)
       } else {
-        const slides = size.width / 126
+        const slides = size.width / 176
         setSlidesPerPage(slides)
       }
     }
