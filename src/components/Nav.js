@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import './Nav.css'
+import Burger from './Burger'
+import Menu from './Menu'
 
 function Nav() {
   const [show, handleShow] = useState(false)
+  const [open, setOpen] = useState(false)
+
+  function checkopen() {
+    if (open) {
+      setOpen(!open)
+    }
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -17,7 +26,16 @@ function Nav() {
 
   return (
     <div className={`nav ${show && 'nav-background'}`}>
-      <img className="nav-logo" src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="logo" />
+      <img
+        className="nav-logo"
+        onClick={() => window.scrollTo(0, 0)}
+        src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
+        alt="logo"
+      />
+      <div onClick={() => checkopen()}>
+        <Burger open={open} setOpen={setOpen} />
+        <Menu open={open} />
+      </div>
 
       <img
         className="nav-avatar"
