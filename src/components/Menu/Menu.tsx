@@ -1,36 +1,43 @@
 import React from 'react'
 import { StyledMenu } from './Menu.styled'
-import HomeIcon from '../../assets/homeIcon.png'
-import TVIcon from '../../assets/tvIcon.png'
+import { setMediaType } from '../../slices/mediaSlice'
+import { useDispatch } from 'react-redux'
 
 interface Props {
   open: boolean
 }
 
-const navigation = (
-  <>
-    <p>
-      <span role="img" aria-label="movies">
-        &#x1F3E0;
-      </span>{' '}
-      HOME
-    </p>{' '}
-    <p>
-      <span role="img" aria-label="movies">
-        &#x1F3A5;{' '}
-      </span>
-      Movies
-    </p>{' '}
-    <p>
-      <span role="img" aria-label="movies">
-        &#x1F4FA;
-      </span>{' '}
-      TVSHOWS
-    </p>{' '}
-  </>
-)
-
 const Menu = ({ open }: Props) => {
-  return <StyledMenu open={open}>{navigation}</StyledMenu>
+  const dispatch = useDispatch()
+
+  const setType = (type: string) => {
+    dispatch(setMediaType(type))
+  }
+
+  return (
+    <StyledMenu open={open}>
+      {' '}
+      <>
+        {/* <p onClick= {()=>setType()}>
+    <span role="img" aria-label="movies">
+      &#x1F3E0;
+    </span>{' '}
+    HOME
+  </p>{' '} */}
+        <p onClick={() => setType('movie')}>
+          <span role="img" aria-label="movies">
+            &#x1F3A5;{' '}
+          </span>
+          Movies
+        </p>{' '}
+        <p onClick={() => setType('tv')}>
+          <span role="img" aria-label="movies">
+            &#x1F4FA;
+          </span>{' '}
+          TVSHOWS
+        </p>{' '}
+      </>
+    </StyledMenu>
+  )
 }
 export default Menu

@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from '../axios'
 import requests from '../requests'
 import './Banner.css'
+import { useSelector } from 'react-redux'
 
 const baseUrl = 'https://image.tmdb.org/t/p/original/'
 
 function Banner() {
   const [movie, setMovie] = useState([])
+  const type = useSelector((state) => state.MediaType)
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(requests.dataRequests.fetchNetflixOriginals)
+      const request = await axios.get(requests.dataRequests(type).fetchNetflixOriginals)
       setMovie(request.data.results[Math.floor(Math.random() * request.data.results.length)])
     }
 
     fetchData()
-  }, [])
+  }, [type])
 
   return (
     <header
