@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
 function App() {
-  const type = useSelector((state) => state.MediaType)
+  const type = useSelector((state: any) => state.MediaType)
 
   useEffect(() => {
     console.log(type)

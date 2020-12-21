@@ -6,9 +6,16 @@ import { useSelector } from 'react-redux'
 
 const baseUrl = 'https://image.tmdb.org/t/p/original/'
 
+interface BannerInfo {
+  backdrop_path: string
+  title?: string
+  name?: string
+  overview: string
+}
+
 function Banner() {
-  const [movie, setMovie] = useState([])
-  const type = useSelector((state) => state.MediaType)
+  const [movie, setMovie] = useState<BannerInfo>()
+  const type = useSelector((state: any) => state.MediaType)
 
   useEffect(() => {
     async function fetchData() {

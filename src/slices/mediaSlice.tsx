@@ -1,13 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-let defaultState = {
-  MediaType: 'movie',
-  NowPlayingMovies: [],
-  // SearchText: '',
-  // SearchResultsMovies: [],
-  // SearchResultsTv: [],
-}
-
 const mediaSlice = createSlice({
   name: 'media',
   initialState: {

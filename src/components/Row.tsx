@@ -9,7 +9,23 @@ import '@brainhubeu/react-carousel/lib/style.css'
 
 const baseUrl = 'https://image.tmdb.org/t/p/original/'
 
-function Row({ title, fetchUrl, isLargeRow, type }) {
+interface Props {
+  title: string
+  fetchUrl: string
+  isLargeRow?: boolean
+  type: string
+}
+
+interface Media {
+  id: string
+  media_type?: string
+  poster_path: string
+  title?: string
+  name?: string
+  overview: string
+}
+
+function Row({ title, fetchUrl, isLargeRow, type }: Props) {
   const [movies, setMovies] = useState([])
   const [trailerUrl, setTrailerUrl] = useState('')
   const [slidesPerPage, setSlidesPerPage] = useState(6)
@@ -37,9 +53,9 @@ function Row({ title, fetchUrl, isLargeRow, type }) {
     setSlides()
   }, [fetchUrl, size, isLargeRow])
 
-  const handleClick = async (media) => {
+  const handleClick = async (media: Media) => {
     if (type === 'all') {
-      const trailer = await axios.get(requests.trailerWithTypeRequests(media.id, media.media_type))
+      const trailer = await axios.get(requests.trailerWithTypeRequests(media.id, media.media_type!))
       setTrailer(trailer)
     }
     if (type === 'tv') {
@@ -52,7 +68,7 @@ function Row({ title, fetchUrl, isLargeRow, type }) {
     }
   }
 
-  const setTrailer = (trailer) => {
+  const setTrailer = (trailer: any) => {
     if (trailer.data.videos.results.length > 0) {
       setTrailerUrl(trailer.data.videos.results[0].key)
     }
@@ -73,9 +89,10 @@ function Row({ title, fetchUrl, isLargeRow, type }) {
       <div className="row-posters">
         <Carousel
           // arrows={true}
+          /* @ts-ignore */
           infinite={true}
           slidesPerPage={slidesPerPage}>
-          {movies.map((movie, index) => {
+          {movies.map((movie: Media, index: number) => {
             return (
               <div key={index}>
                 <img
@@ -89,6 +106,7 @@ function Row({ title, fetchUrl, isLargeRow, type }) {
           })}
         </Carousel>
       </div>
+      {/* @ts-ignore */}
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
     </div>
   )

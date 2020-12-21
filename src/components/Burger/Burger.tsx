@@ -3,7 +3,7 @@ import { StyledBurger } from './Burger.styled'
 
 interface Props {
   open: boolean
-  setOpen: any
+  setOpen: Function
 }
 
 const Burger = ({ open, setOpen }: Props) => {
