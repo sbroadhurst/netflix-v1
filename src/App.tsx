@@ -5,9 +5,11 @@ import Nav from './components/Nav'
 import requests from './requests'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import UserModal from './components/UserModal'
 
 function App() {
   const type = useSelector((state: any) => state.MediaType)
+  const isModalOpen = useSelector((state: any) => state.isUserModalOpen)
 
   useEffect(() => {
     console.log(type)
@@ -22,6 +24,8 @@ function App() {
     <div className="App">
       <Nav />
       <Banner />
+      <UserModal isOpen={isModalOpen} />
+
       <Row
         title={`NETFLIX ORIGINAL ${titleType}`}
         type={type}
