@@ -21,6 +21,7 @@ export const ModalStyled = styled.div`
   transform: translate(-50%);
   min-width: 30rem;
   z-index: 2;
+  display: flex;
 `
 
 export const CloseButtonStyled = styled.button`
@@ -30,10 +31,13 @@ export const CloseButtonStyled = styled.button`
   top: 0;
   right: 0;
   z-index: 1;
-  svg {
-    font-size: 1.5em;
-  }
+  font-size: 1.5em;
   &:hover {
     cursor: pointer;
   }
+`
+
+export const ModalContent = styled.div`
+  background: white;
+  text-align: center;
 `

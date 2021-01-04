@@ -27,7 +27,7 @@ function App() {
       <UserModal isOpen={isModalOpen} />
 
       <Row
-        title={`NETFLIX ORIGINAL ${titleType}`}
+        title={type === 'movie' ? `RECENT & UPCOMING ${titleType}` : `NETFLIX ORIGINAL ${titleType}`}
         type={type}
         fetchUrl={requests.dataRequests(type).fetchNetflixOriginals}
         isLargeRow
