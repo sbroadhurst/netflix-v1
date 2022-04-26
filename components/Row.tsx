@@ -88,8 +88,8 @@ function Row({ title, fetchUrl, isLargeRow, type }: Props) {
 
       <div className={styles.rowPosters}>
         <Carousel
-          // arrows={true}
           /* @ts-ignore */
+          // arrows={true}
           infinite={true}
           slidesPerPage={slidesPerPage}>
           {movies.map((movie: Media, index: number) => {
