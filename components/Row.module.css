@@ -3,15 +3,15 @@
   color: white;
 }
 
-.row-posters {
+.rowPosters {
   padding: 20px;
 }
 
-.row-posters::-webkit-scrollbar {
+.rowPosters::-webkit-scrollbar {
   display: none;
 }
 
-.row-poster {
+.rowPoster {
   object-fit: contain;
   max-height: 200px;
   margin: 20px;
@@ -19,14 +19,14 @@
   transition: transform 450ms;
 }
 
-.row-poster:hover {
+.rowPoster:hover {
   transform: scale(1.08);
 }
 
-.row-posterLarge {
+.rowPosterLarge {
   max-height: 270px;
 }
 
-.row-poster:hover {
+.rowPoster:hover {
   transform: scale(1.09);
 }

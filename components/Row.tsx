@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from '../axios'
-import './Row.css'
+import styles from './Row.module.css'
 import YouTube from 'react-youtube'
 import requests from '../requests'
 import { useWindowSize } from '../windowSize'
@@ -83,10 +83,10 @@ function Row({ title, fetchUrl, isLargeRow, type }: Props) {
   }
 
   return (
-    <div className="row">
+    <div className={styles.row}>
       <h2>{title}</h2>
 
-      <div className="row-posters">
+      <div className={styles.rowPosters}>
         <Carousel
           // arrows={true}
           /* @ts-ignore */
@@ -97,7 +97,7 @@ function Row({ title, fetchUrl, isLargeRow, type }: Props) {
               <div key={index}>
                 <img
                   onClick={() => handleClick(movie)}
-                  className={`row-poster ${isLargeRow && 'row-posterLarge'}`}
+                  className={`${styles.rowPoster} ${isLargeRow && styles.rowPosterLarge}`}
                   src={`${baseUrl}${movie.poster_path}`}
                   alt={movie.name ? movie.name : movie.title}
                 />

@@ -5,9 +5,9 @@ const dataRequests = (mediaType: string) => {
     fetchTrending: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
     fetchNetflixOriginals: `/discover/${mediaType}?api_key=${API_KEY}&with_networks=213`,
     fetchTopRated: `/${mediaType}/top_rated?api_key=${API_KEY}&language=en-US`,
-    fetchActionMovies: `/discover/${mediaType}?api_key=${API_KEY}&with_genres=28`,
+    fetchActionMovies: `/discover/${mediaType}?api_key=${API_KEY}&with_genres=${mediaType === 'movie' ? 28 : 10759}`,
     fetchComedyMovies: `/discover/${mediaType}?api_key=${API_KEY}&with_genres=35`,
-    fetchHorrorMovies: `/discover/${mediaType}?api_key=${API_KEY}&with_genres=27`,
+    fetchHorrorMovies: `/discover/${mediaType}?api_key=${API_KEY}&with_genres=${mediaType === 'movie' ? 27 : 80}`,
     fetchRomanceMovies: `/discover/${mediaType}?api_key=${API_KEY}&with_genres=10749`,
     fetchDocumentaries: `/discover/${mediaType}?api_key=${API_KEY}&with_genres=99`,
   }

@@ -1,11 +1,10 @@
-import './App.css'
-import Row from './components/Row'
-import Banner from './components/Banner'
-import Nav from './components/Nav'
-import requests from './requests'
+import Row from '../components/Row'
+import Banner from '../components/Banner'
+import Nav from '../components/Nav'
+import requests from '../requests'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import UserModal from './components/UserModal'
+import UserModal from '../components/UserModal'
 
 function App() {
   const type = useSelector((state: any) => state.MediaType)
@@ -36,8 +35,12 @@ function App() {
       <Row title={`TOP RATED ${titleType}`} type={type} fetchUrl={requests.dataRequests(type).fetchTopRated} />
       <Row title={`ACTION ${titleType}`} type={type} fetchUrl={requests.dataRequests(type).fetchActionMovies} />
       <Row title={`COMEDY ${titleType}`} type={type} fetchUrl={requests.dataRequests(type).fetchComedyMovies} />
-      <Row title={`HORROR ${titleType}`} type={type} fetchUrl={requests.dataRequests(type).fetchHorrorMovies} />
       <Row title={` DOCUMENTARY ${titleType}`} type={type} fetchUrl={requests.dataRequests(type).fetchDocumentaries} />
+      {type === 'movie' ? (
+        <Row title={`HORROR ${titleType}`} type={type} fetchUrl={requests.dataRequests(type).fetchHorrorMovies} />
+      ) : (
+        <Row title={`CRIME ${titleType}`} type={type} fetchUrl={requests.dataRequests(type).fetchHorrorMovies} />
+      )}
     </div>
   )
 }
