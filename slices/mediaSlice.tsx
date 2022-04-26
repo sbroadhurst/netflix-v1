@@ -7,10 +7,10 @@ const mediaSlice = createSlice({
     isUserModalOpen: false,
   },
   reducers: {
-    setMediaType: (state, action) => {
+    setMediaType: (state: any, action: any) => {
       state.MediaType = action.payload
     },
-    setUserModalOpen: (state) => {
+    setUserModalOpen: (state: any) => {
       state.isUserModalOpen = !state.isUserModalOpen
     },
   },
